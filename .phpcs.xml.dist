@@ -3,6 +3,13 @@
 	<!-- Scan everything -->
 	<file>.</file>
 
+	<!-- Do not follow WordPress class name naming requirements -->
+	<rule ref="WordPress.Files.FileName">
+		<properties>
+			<property name="strict_class_file_names" value="false" />
+		</properties>
+	</rule>
+
 	<!-- Exclude the Composer Vendor directory. -->
 	<exclude-pattern>/vendor/*</exclude-pattern>
 
