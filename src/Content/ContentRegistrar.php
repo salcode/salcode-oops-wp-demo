@@ -35,6 +35,17 @@ class ContentRegistrar extends Service {
 	];
 
 	/**
+	 * List of Taxonomy classes that should be registered
+	 * by this service
+	 *
+	 * @var string[] $taxonomies array of Taxonomy classes
+	 * @since 1.0.0
+	 */
+	protected $taxonomies = [
+		Taxonomy\Ingredient::class,
+	];
+
+	/**
 	 * Register hooks
 	 *
 	 * @author sal.ferrarello@webdevstudios.com
@@ -42,6 +53,7 @@ class ContentRegistrar extends Service {
 	 */
 	public function register_hooks() {
 		add_action( 'init', [ $this, 'register_post_types' ] );
+		add_action( 'init', [ $this, 'register_taxonomies' ] );
 	}
 
 	/**
@@ -57,6 +69,18 @@ class ContentRegistrar extends Service {
 		}
 	}
 
+	/**
+	 * Register taxonomies
+	 *
+	 * @author sal.ferrarello@webdevstudios.com
+	 * @since 1.0.0
+	 */
+	public function register_taxonomies() {
+		foreach ( $this->taxonomies as $taxonomy_class ) {
+			$taxonomy = new $taxonomy_class();
+			$this->register_content( $taxonomy );
+		}
+	}
 	/**
 	 * Register content
 	 *
