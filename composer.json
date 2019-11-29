@@ -9,6 +9,11 @@
     "require-dev": {
         "webdevstudios/php-coding-standards": "^1.0@beta"
     },
+    "autoload": {
+        "psr-4": {
+            "salcode\\OopsWPDemo\\": "src/"
+        }
+    },
     "license": "apache-2.0",
     "authors": [
         {
