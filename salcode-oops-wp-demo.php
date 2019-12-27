@@ -21,9 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	require_once __DIR__ . '/vendor/autoload.php';
-}
+require_once __DIR__ . '/vendor/autoload.php';
 
 $oops_plugin = new OopsPlugin();
 $oops_plugin->run();
