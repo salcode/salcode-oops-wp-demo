@@ -45,6 +45,10 @@ class ContentRegistrar extends Service {
 		Taxonomy\Ingredient::class,
 	];
 
+	protected $shortcodes = [
+		Shortcode\Reverser::class,
+	];
+
 	/**
 	 * Register hooks
 	 *
@@ -54,6 +58,7 @@ class ContentRegistrar extends Service {
 	public function register_hooks() {
 		add_action( 'init', [ $this, 'register_post_types' ] );
 		add_action( 'init', [ $this, 'register_taxonomies' ] );
+		add_action( 'init', [ $this, 'register_shortcodes' ] );
 	}
 
 	/**
@@ -81,6 +86,14 @@ class ContentRegistrar extends Service {
 			$this->register_content( $taxonomy );
 		}
 	}
+
+	public function register_shortcodes() {
+		foreach ( $this->shortcodes as $shortcode_class ) {
+			$shortcode = new $shortcode_class();
+			$this->register_content( $shortcode );
+		}
+	}
+
 	/**
 	 * Register content
 	 *
@@ -89,7 +102,7 @@ class ContentRegistrar extends Service {
 	 *
 	 * @param Regsiterable $register_me Ojbect to be registered.
 	 */
-	private function register_content( ContentTypeInterface $content_type ) {
-		$content_type->register();
+	private function register_content( Registerable $register_me ) {
+		$register_me->register();
 	}
 }
