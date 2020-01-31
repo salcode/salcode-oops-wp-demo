@@ -11,8 +11,8 @@
 
 namespace salcode\OopsWPDemo\Content;
 
-use WebDevStudios\OopsWP\Structure\Content\ContentTypeInterface;
 use WebDevStudios\OopsWP\Structure\Service;
+use WebDevStudios\OopsWP\Utility\Registerable;
 
 /**
  * Class: ContentRegistrar
@@ -87,7 +87,7 @@ class ContentRegistrar extends Service {
 	 * @author sal.ferrarello@webdevstudios.com
 	 * @since 1.0.0
 	 *
-	 * @param ContentTypeInterface $content_type Content type to be registered.
+	 * @param Regsiterable $register_me Ojbect to be registered.
 	 */
 	private function register_content( ContentTypeInterface $content_type ) {
 		$content_type->register();
